@@ -6,11 +6,12 @@ import styles from '../styles/styles'
 class CurrentTrack extends Component {
     render () {
         const track = this.props.playback.currentTrack;
+        const state = this.props.playback.state;
         const title = track ? track.title : "none";
         return (
             <Text>
                 <Text>
-                Now Playing: {title}
+                {state} - {title}               
                 </Text>
             </Text>
         )

@@ -17,11 +17,14 @@ export default class App extends Component {
 
   async getTrackInfo() {
     let trackId = await TrackPlayer.getCurrentTrack();
-    let track = await TrackPlayer.getTrack(trackId);
-    store.dispatch({
-      type: 'PLAYBACK_TRACK',
-      state: track
-    });
+
+    if (trackId != null){
+      let track = await TrackPlayer.getTrack(trackId);
+      store.dispatch({
+        type: 'PLAYBACK_TRACK',
+        state: track
+      });
+    };
   }
 
   render() {

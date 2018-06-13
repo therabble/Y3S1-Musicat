@@ -13,7 +13,7 @@ export default class Song extends Component{
   addToPlaylist() {
     const track = {
       id: this.props.song.access_token,
-      url: this.props.song.url,
+      url: 'https://mms.yaharamusic.org/tc?src=' + this.props.song.url + '&fmt=mp3&auth=foo',
       title: this.props.song.title,
       artist: this.props.artist
     };
@@ -24,12 +24,12 @@ export default class Song extends Component{
   render(){
     return(
       <View style={{flexDirection: 'row'}}>
-        <View style={{flex: 10, padding:10}}>
+        <View style={styles.trackbox}>
           <Text style={styles.trackstyle}>{this.props.song.position}. {this.props.song.title}{'\n'}</Text>
         </View>
-        <View style={{flex: 2, padding:10}}>
+        <View style={styles.trackaddbox}>
           <TouchableOpacity onPress={this.addToPlaylist}>
-            <Text style={{fontWeight: 'bold'}}>Add</Text>
+            <Text style={styles.addbutton}>Add</Text>
           </TouchableOpacity>
         </View>
       </View>

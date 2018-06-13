@@ -44,7 +44,7 @@ export default class Album extends Component{
   showOpenCloseIcon() {
     if(this.state.showSongs)
     {
-      return <Icon name="angle-down" size={30} color="#009" />
+      return <Icon name="angle-down" size={30} color="#6cc7e6" />
     }
     else
     {
@@ -55,19 +55,22 @@ export default class Album extends Component{
   render() {
     return (
       <View>
+        <TouchableOpacity onPress = {this.toggleShowSongs}>
         <View style={styles.albumheader}> 
-          <View style={{flex:1}}>
+          <View>
             <Image source={{uri: this.props.album.front_cover_art}} style={styles.albumpicture} />    
           </View>
-          <TouchableOpacity onPress = {this.toggleShowSongs} style={{flex:3}}> 
             <View style={styles.albuminfo}>
               {/* <Text>{this.props.trackNum}. </Text> */}
+              <View style={{width: 150}}>
               <Text style={styles.albumtitle}>{this.props.album.title}</Text>
+              </View><View style={{width: 150}}>
               <Text style={styles.artistname}>{this.props.album.main_artist_name}</Text>
               {this.showOpenCloseIcon()}
-            </View>
-          </TouchableOpacity >
+              </View>
+          </View >
         </View>
+        </TouchableOpacity>
         {this.showSongs()}
       </View>
     );

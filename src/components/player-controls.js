@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View } from 'react-native';
+import { TouchableOpacity, View } from 'react-native';
 import { play, pause, stop, add, next, previous, configPlayer } from '../track-player/player-commands';
 import CurrentTrack from './current-track';
 import ProgressBar from './progress-bar';
@@ -13,30 +13,33 @@ export default class PlayerControls extends Component {
 
 
     render() {
-      const iconSize = 22;
         return (
           <View style={styles.bottombar}>
-              <View style={styles.playercontrols}>
-                <Text onPress={previous}>
-                  <Icon name="step-backward" size={iconSize} color="#6cc7e6" />
-                </Text>  
-                <Text onPress={stop}>
-                  <Icon name="stop" size={iconSize} color="#6cc7e6" />
-                </Text> 
-                <Text onPress={play}>
-                  <Icon name="play" size={iconSize} color="#6cc7e6"  />
-                </Text>
-                <Text onPress={pause}>
-                  <Icon name="pause" size={iconSize} color="#6cc7e6" />
-                </Text>
-                <Text onPress={next}>
-                  <Icon name="step-forward" size={iconSize} color="#6cc7e6" />
-                </Text>
- 
-              </View>        
-                <CurrentTrack store={this.props.store} />  
-                <ProgressBar store={this.props.store}/>
+          <View style={styles.break}></View>
+          <View style={styles.playercontrols}>
+          <TouchableOpacity onPress={previous} >
+            <Icon name="step-backward" size={25} color="#6cc7e6" />
+            </TouchableOpacity>  
+            <TouchableOpacity onPress={stop}>
+            <Icon name="stop" size={25} color="#6cc7e6" />
+            </TouchableOpacity>   
+            <TouchableOpacity onPress={play}>
+            <Icon name="play" size={25} color="#6cc7e6"/>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={pause}>
+            <Icon name="pause" size={25} color="#6cc7e6" />
+            </TouchableOpacity>
+            <TouchableOpacity onPress={next}> 
+            <Icon name="step-forward" size={25} color="#6cc7e6" />
+            </TouchableOpacity>
           </View>
+          <View style={styles.progressbarbox}>        
+          <CurrentTrack store={this.props.store} />
+          </View>
+          <View style={styles.progressbarbox}>  
+            <ProgressBar store={this.props.store}/>
+          </View>
+      </View>
           );
     }
 }

@@ -8,7 +8,7 @@ export default class MainScreen extends Component {
   render() {
     return (
       <View style={styles.mainscreen}>
-      <View style={{flex:1,alignItems:'center'}}>
+      <View style={styles.logobox}>
         <Image source={require('../images/musicat.png')} style={styles.logo}></Image>
       </View>
           <Albums store={this.props.store} />

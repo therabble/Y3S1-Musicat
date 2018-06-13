@@ -27,7 +27,6 @@ class ProgressBar extends Component {
         const info = this.props.playback.playerState;
         return (parseFloat(info.position) / parseFloat(info.duration) * 100);
     }
-
     formatTime(seconds) {
         const ss = Math.floor(seconds) % 60;
         const mm = Math.floor(seconds / 60) % 60;
@@ -43,7 +42,21 @@ class ProgressBar extends Component {
     formatTwoDigits(n) {
       return n < 10 ? '0' + n : n;
     }
-    
+    getProgressAndFormat(){
+        const info = this.props.playback.playerState;
+        if (info.position > 0){
+        return this.formatTime(info.position);
+        }
+        else {
+            return "0:00"
+        }
+
+    }
+    getDurationAndFormat(){
+        const info = this.props.playback.playerState;
+        return this.formatTime(info.duration)
+    }
+
     async updatePlayer(){
       let position = await TrackPlayer.getPosition();
       position = (Math.floor(position));
@@ -60,9 +73,10 @@ class ProgressBar extends Component {
     render () {
         return (
             <View>
-            <View style = {styles.bar}>
-                <View style = {[styles.currentbar, {width: this.getProgress() + '%'}]}></View>
-            </View>
+                <View style = {styles.bar}>
+                    <View style = {[styles.currentbar, {width: this.getProgress() + '%'}]}></View>
+                </View>
+                <Text style = {styles.progresstext}>{this.getProgressAndFormat()} / {this.getDurationAndFormat()}</Text>
             </View>
         )
     }
