@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import styles from '../styles/styles';
 import Album from './album';
 import { ScrollView, View } from 'react-native';
 import { connect } from 'react-redux';
-//import { loadAlbums } from '../data/albums';
 
 class Albums extends Component {
     componentDidMount() {

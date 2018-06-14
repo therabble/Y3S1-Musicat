@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { TouchableOpacity, View } from 'react-native';
-import { play, pause, stop, add, next, previous, configPlayer } from '../track-player/player-commands';
+import { play, pause, stop, next, previous, configPlayer } from '../track-player/player-commands';
 import CurrentTrack from './current-track';
 import ProgressBar from './progress-bar';
 import styles from '../styles/styles';

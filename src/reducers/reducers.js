@@ -1,5 +1,6 @@
 import { combineReducers } from 'redux';
 
+
 function playbackReducer(state = {playerState: {}, currentTrack: {}}, action) {
     switch(action.type) {
         case 'PLAYBACK_INIT':
@@ -39,8 +40,11 @@ function albumsReducer(state = {albums: []}, action) {
     }
 }
 
+
+
+
 module.exports = combineReducers({
     playback: playbackReducer,
-    albums: albumsReducer
+    albums: albumsReducer,
 });
 

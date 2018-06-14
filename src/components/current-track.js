@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Text } from 'react-native';
-import styles from '../styles/styles'
 
 class CurrentTrack extends Component {
     render () {

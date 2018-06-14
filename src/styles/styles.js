@@ -45,8 +45,8 @@ const styles = StyleSheet.create({
         height: 5
     },  
     logo:{
-        width: 150,
-        height: 60
+        width: 100,
+        height: 40
     },
     logobox: {
         flex:1.4,
@@ -54,7 +54,17 @@ const styles = StyleSheet.create({
     },
     mainscreen:{
         flex: 1,
+        paddingLeft: 20,
+        paddingRight: 20,
+        backgroundColor: '#ffffff'
+    },
+    navigationbox: {
+        alignItems: 'center',
         padding: 20,
+    },
+    navigationtext:{
+        fontSize: 16,
+        fontWeight: 'bold',
     },
     playercontrols:{
         flexDirection: 'row',
@@ -62,7 +72,7 @@ const styles = StyleSheet.create({
         padding: 10
     }, 
     progressbarbox: {
-        height: 30,
+        height: 20,
     },
     progresstext: {
         fontSize: 8

@@ -1,13 +1,5 @@
 import React, { Component } from 'react';
-import { 
-  Platform, 
-  StyleSheet, 
-  Text, 
-  View, 
-  Button,
-  TouchableOpacity,
-  Image 
-} from 'react-native';
+import { Text, View, TouchableOpacity,Image } from 'react-native';
 import Song from './song';
 import styles from '../styles/styles';
 import Icon from 'react-native-vector-icons/FontAwesome';

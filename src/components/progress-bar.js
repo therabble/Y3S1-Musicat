@@ -2,11 +2,8 @@ import React, { Component } from 'react';
 import { View, Text } from 'react-native';
 import { connect } from 'react-redux';
 import styles from '../styles/styles';
-import TrackPlayer, { ProgressComponent } from 'react-native-track-player';
-import { play, pause, stop, add, configPlayer } from '../track-player/player-commands';
-import { Provider } from 'react-redux';
-import { createStore } from 'redux';
-import reducers from '../reducers/reducers';
+import TrackPlayer from 'react-native-track-player';
+
 
 /* Component that tells you where in the song you are */
 
