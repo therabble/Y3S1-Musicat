@@ -27,6 +27,10 @@ const styles = StyleSheet.create({
     artistname:{
         fontSize: 13,
     },
+    background: {
+        backgroundColor: '#ffffff',
+        flex: 1,
+    },
     bar: {
         backgroundColor: '#575757',
         height: 5,

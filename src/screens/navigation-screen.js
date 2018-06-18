@@ -2,13 +2,13 @@ import React, { Component } from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import styles from '../styles/styles'
 
-export default class Navigation extends Component {
+export default class NavigationScreen extends Component {
     static navigationOptions = {
     };
 
     render() {
         return (
-            <View style={{backgroundColor: '#ffffff', flex: 1,}}>
+            <View style={styles.background}>
                 <TouchableOpacity style={style=styles.navigationbox} onPress={() => this.props.navigation.navigate('Main')}>
                     <Text style={styles.navigationtext} >Madison Public Library</Text>
                 </TouchableOpacity>

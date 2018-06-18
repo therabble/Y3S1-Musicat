@@ -4,9 +4,6 @@ import { connect } from 'react-redux';
 import styles from '../styles/styles';
 import TrackPlayer from 'react-native-track-player';
 
-
-/* Component that tells you where in the song you are */
-
 class ProgressBar extends Component {
     constructor(props){
         super(props);
