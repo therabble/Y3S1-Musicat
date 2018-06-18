@@ -7,24 +7,6 @@ import styles from '../styles/styles';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 export default class PlayerControls extends Component {
-    constructor(props) {
-        super(props);
-    
-        setInterval(this.getTrackInfo, 500);
-      }
-      
-      async getTrackInfo() {
-        let trackId = await TrackPlayer.getCurrentTrack();
-    
-        if (trackId != null){
-          let track = await TrackPlayer.getTrack(trackId);
-          store.dispatch({
-            type: 'PLAYBACK_TRACK',
-            state: track
-          });
-        };
-      }
-
     componentDidMount(){
         configPlayer();
     }

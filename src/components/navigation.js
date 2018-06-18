@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import { createStackNavigator, addNavigationHelpers } from 'react-navigation';
-import Main from './screens/main-screen';
+import { createStackNavigator } from 'react-navigation';
+import Navigation from '../screens/navigation-screen';
+import Main from '../screens/main-screen';
 import {Image} from 'react-native';
-import { connect } from 'react-redux';
-import styles from './styles/styles'
+import styles from '../styles/styles'
 
 const RootStack = createStackNavigator(
   {
@@ -13,7 +13,7 @@ const RootStack = createStackNavigator(
   {
     initialRouteName: 'Navigation',
     navigationOptions: {
-      headerTitle: <Image source={require('./images/musicat.png')} style={styles.logo}></Image>,
+      headerTitle: <Image source={require('../images/musicat.png')} style={styles.logo}></Image>,
       headerStyle: {
         backgroundColor: '#ffffff',
       },
@@ -24,3 +24,13 @@ const RootStack = createStackNavigator(
     },
   }
 );
+
+
+export default class Nav extends Component {
+  
+  render() {
+    return (   
+      <RootStack />
+    );
+  }
+}

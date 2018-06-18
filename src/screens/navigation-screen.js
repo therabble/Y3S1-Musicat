@@ -2,9 +2,7 @@ import React, { Component } from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import styles from '../styles/styles'
 
-export default class NavigationScreen extends Component {
-    static navigationOptions = {
-    };
+export default class Navigation extends Component {
 
     render() {
         return (
