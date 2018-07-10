@@ -1,6 +1,16 @@
 import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
+    addalbum:{
+            position: 'absolute',
+            paddingLeft: 20,
+            paddingRight: 5,
+            paddingTop: 15,
+            paddingBottom: 5,
+    },
+    addalbumopenclose:{
+        flexDirection: 'row',
+    },
     addbutton: {
         fontWeight: 'bold'
     },
@@ -11,6 +21,7 @@ const styles = StyleSheet.create({
     },
     albuminfo:{
         paddingLeft: 30,
+        width: 180,
     },
     albumlist: {
         flex: 10,
@@ -18,7 +29,8 @@ const styles = StyleSheet.create({
     albumpicture: {
         width: 100,
         height: 100, 
-        borderRadius: 50
+        borderRadius: 50,
+        backgroundColor: 'transparent',
     },
     albumtitle:{
         fontSize: 16,
@@ -44,10 +56,33 @@ const styles = StyleSheet.create({
     break: {
         height: 8,
     },
+    collectioninfo:{
+        paddingLeft: 30,
+        paddingTop: 25,
+        width: 180,
+    },
+    collectionlabel:{
+        fontSize: 14,
+        fontWeight: 'bold',
+        alignItems:'center'
+    },
+    collectionlogo:{
+        resizeMode: 'contain',
+        width: 100,
+        height: 100,
+        borderRadius: 50,
+        borderWidth: 1,
+        borderColor: '#CACACA'
+        
+    },
     currentbar: {
         backgroundColor: '#6cc7e6',
         height: 5
     },  
+    libraryname:{
+        fontSize: 12,
+        alignItems:'center'
+    },
     logo:{
         width: 100,
         height: 40
@@ -63,12 +98,19 @@ const styles = StyleSheet.create({
         backgroundColor: '#ffffff'
     },
     navigationbox: {
-        alignItems: 'center',
-        padding: 20,
+        flexDirection: 'row',
+        paddingBottom: 15,
+        paddingTop: 15,
     },
-    navigationtext:{
+    navigationheader:{
         fontSize: 16,
         fontWeight: 'bold',
+        alignItems:'center'
+    },
+    navigationheaderbox: {
+        alignItems: 'center',
+        padding: 15,
+        borderBottomWidth: 1,
     },
     playercontrols:{
         flexDirection: 'row',

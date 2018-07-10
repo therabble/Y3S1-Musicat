@@ -4,14 +4,18 @@ import Album from './album';
 import { ScrollView, View } from 'react-native';
 import { connect } from 'react-redux';
 
+
 class Albums extends Component {
+
     componentDidMount() {
         this.loadAlbums();
     }
 
     loadAlbums() {
+        const collectionUrl = 'http://127.0.0.1:5005/public/albums/?collection=' + this.props.collection //development
+//        const collectionUrl = 'https://api.musicat.co/public/albums/?collection=' + this.props.collection //production
         axios
-        .get("https://api.musicat.co/public/albums/?collection=org.madisonpubliclibrary.yaharamusic")
+        .get(collectionUrl) //development
         .then((res) => {
             let newList = res.data;
             for (let i=0;i<newList.length;i++){      

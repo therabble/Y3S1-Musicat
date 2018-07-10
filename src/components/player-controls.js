@@ -6,10 +6,8 @@ import ProgressBar from './progress-bar';
 import styles from '../styles/styles';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
+
 export default class PlayerControls extends Component {
-    componentDidMount(){
-        configPlayer();
-    }
 
 
     render() {

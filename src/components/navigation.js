@@ -3,34 +3,39 @@ import { createStackNavigator } from 'react-navigation';
 import Navigation from '../screens/navigation-screen';
 import Main from '../screens/main-screen';
 import {Image} from 'react-native';
-import styles from '../styles/styles'
+import styles from '../styles/styles';
+import NavigationService from './navigation-service';
 
-const RootStack = createStackNavigator(
-  {
-    Main: Main,
-    Navigation: Navigation,
-  },
-  {
-    initialRouteName: 'Navigation',
-    navigationOptions: {
-      headerTitle: <Image source={require('../images/musicat.png')} style={styles.logo}></Image>,
-      headerStyle: {
-        backgroundColor: '#ffffff',
+
+
+const Navigator = createStackNavigator(
+      {
+        Main: Main,
+        Navigation: Navigation,
       },
-      headerTintColor: '#6cc7e6',
-      headerTitleStyle: {
-        fontWeight: 'bold',
-      },
-    },
-  }
-);
+      {
+        initialRouteName: 'Navigation',
+        navigationOptions: {
+          headerTitle: <Image source={require('../images/musicat.png')} style={styles.logo}></Image>,
+          headerStyle: {
+            backgroundColor: '#ffffff',
+          },
+          headerTintColor: '#6cc7e6',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },
+        },
+      }
+    );  
 
 
-export default class Nav extends Component {
-  
+export default class Nav extends Component { 
+
   render() {
-    return (   
-      <RootStack />
-    );
+    return (
+      <Navigator
+      ref={navigatorRef => NavigationService.setTopLevelNavigator(navigatorRef)}
+      />
+    )
   }
 }

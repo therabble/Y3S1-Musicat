@@ -35,6 +35,11 @@ const previous = () => {
         TrackPlayer.skipToPrevious();
     });
 }
+const reset = () => {
+    TrackPlayer.setupPlayer({}).then(() => {
+        TrackPlayer.reset();
+    });
+}
 
 const configPlayer = async () => {
     TrackPlayer.setupPlayer({}).then(() => {
@@ -44,7 +49,8 @@ const configPlayer = async () => {
               TrackPlayer.CAPABILITY_PAUSE,
               TrackPlayer.CAPABILITY_STOP,
               TrackPlayer.CAPABILITY_SKIP_TO_NEXT,
-              TrackPlayer.CAPABILITY_SKIP_TO_PREVIOUS
+              TrackPlayer.CAPABILITY_SKIP_TO_PREVIOUS,
+              TrackPlayer.CAPABILITY_RESET
           ]
         });
     });
@@ -57,5 +63,6 @@ module.exports = {
     add,
     next,
     previous,
-    configPlayer
+    configPlayer,
+    reset
 };

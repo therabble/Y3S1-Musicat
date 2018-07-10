@@ -40,11 +40,24 @@ function albumsReducer(state = {albums: []}, action) {
     }
 }
 
+function collectionsReducer(state = {collections: []}, action) {
+    switch(action.type) {
+        case 'LOAD_COLLECTIONS':
+            return {
+                ...state,
+                collections: action.state.collections
+            };
+        default:
+            return state;
+    }
+}
+
 
 
 
 module.exports = combineReducers({
     playback: playbackReducer,
     albums: albumsReducer,
+    collections: collectionsReducer
 });
 

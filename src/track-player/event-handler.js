@@ -1,4 +1,4 @@
-import {play, pause, stop, next, previous} from './player-commands';
+import {play, pause, stop, next, previous, reset} from './player-commands';
 
 const eventHandler = async (store, data) => {
     if(data.type == 'playback-state') {
@@ -27,6 +27,7 @@ const eventHandler = async (store, data) => {
         // Again, we can forward this command to the player using  
         previous();
     }
+
 };
 
 module.exports = function(store) {
