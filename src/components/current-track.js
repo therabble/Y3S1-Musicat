@@ -30,12 +30,12 @@ class CurrentTrack extends Component {
 
     render () {
         const track = this.props.playback.currentTrack;
-        const state = this.props.playback.state;
         const title = track ? track.title : "none";
+        const artist = track ? track.artist : "none";
         return (
             <Text>
                 <Text>
-                {state} - {title}               
+                {title} - {artist}              
                 </Text>
             </Text>
         )

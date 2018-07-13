@@ -65,12 +65,13 @@ class ProgressBar extends Component {
     }
 
     render () {
+        const state = this.props.playback.state;
         return (
             <View>
                 <View style = {styles.bar}>
                     <View style = {[styles.currentbar, {width: this.getProgress() + '%'}]}></View>
                 </View>
-                <Text style = {styles.progresstext}>{this.getProgressAndFormat()} / {this.getDurationAndFormat()}</Text>
+                <Text style = {styles.progresstext}>{this.getProgressAndFormat()} / {this.getDurationAndFormat()} {state}</Text>
             </View>
         )
     }

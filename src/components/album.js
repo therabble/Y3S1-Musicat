@@ -12,6 +12,7 @@ export default class Album extends Component{
     this.toggleShowSongs = this.toggleShowSongs.bind(this);
     this.showSongs = this.showSongs.bind(this);
     this.addAlbumToPlaylist = this.addAlbumToPlaylist.bind(this);
+    this.showAddAlbum = this.showAddAlbum.bind(this);
     this.state = {
       trackList: "",
       showSongs: false
@@ -38,13 +39,14 @@ export default class Album extends Component{
   showOpenCloseIcon() {
     if(this.state.showSongs)
     {
-      return <Icon name="angle-down" size={30} color="#6cc7e6" />
+      return <Icon name="caret-down" size={30} color="#6cc7e6" />
     }
     else
     {
-      return <Icon name="angle-right" size={30} color="#6cc7e6" />
+      return <Icon name="caret-right" size={30} color="#6cc7e6" />
     }
   }
+
   addAlbumToPlaylist() {
     reset();
     {this.props.album.tracks.map((song, index) => {
@@ -58,22 +60,35 @@ export default class Album extends Component{
       play();   
   }
 
+  showAddAlbum() {
+    if(this.state.showSongs)
+    {
+      return  <View>
+      <TouchableOpacity onPress={this.addAlbumToPlaylist}>
+        <Text style = {styles.addalbumsongslist}>Add Album to Playlist</Text>
+        </TouchableOpacity>
+        </View>
+    }
+  }
+
+
   render() {
     
     albumArt = "https://mmscache.capitalcityrecords.ca/tc?src=" + this.props.album.front_cover_art + "&fmt=jpeg&auth=foo&scale_width=200";
 
     return (
-      <View>
-        <TouchableOpacity onPress = {this.toggleShowSongs}>
+      <View>      
           <View style={styles.albumheader}>
             <View>
               <TouchableOpacity onPress={this.addAlbumToPlaylist}>
                 <Image source={{uri: albumArt}} style={styles.albumpicture} />
-                <View style = {styles.addalbum} >          
-                  <Icon name="play-circle" size={20} color="#6cc7e6"/>
+                <View style = {styles.addalbum} >
+                <Icon style = {{position: 'absolute'}} name="circle" size={30} color="#FFFFFF"/>          
+                  <Icon style = {{position: 'absolute'}} name="play-circle" size={30} color="#6cc7e6"/>
                 </View>
               </TouchableOpacity>     
             </View>
+            <TouchableOpacity onPress = {this.toggleShowSongs}>
             <View style={styles.albuminfo}>
               <View >
                 <Text style={styles.albumtitle}>{this.props.album.title}</Text>
@@ -83,8 +98,9 @@ export default class Album extends Component{
                 {this.showOpenCloseIcon()}
               </View>
             </View >
+            </TouchableOpacity>
           </View>
-        </TouchableOpacity>
+        {this.showAddAlbum()}
         {this.showSongs()}
       </View>
     );

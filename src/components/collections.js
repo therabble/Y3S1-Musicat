@@ -1,17 +1,19 @@
 import React, { Component } from 'react';
 import styles from '../styles/styles';
 import axios from 'axios';
-import { ScrollView, View, TouchableOpacity, Text, Image } from 'react-native';
-import collectionInfo from '../data/librarydata';
+import { ScrollView, View, TouchableOpacity, Text, Image, AsyncStorage } from 'react-native';
+
 import { connect } from 'react-redux';
+import { lastCollectionPersistKey } from '../data/persist';
 //import NavigationService from './navigation-service';
 
 export default class Collections extends Component {
+    constructor(props) {
+        super(props);
     
+        this.selectCollection = this.selectCollection.bind(this);
 
-    state = {
-        data: collectionInfo
-    };
+    }
     
     componentDidMount() {
         this.loadCollections();
@@ -31,6 +33,14 @@ export default class Collections extends Component {
         });
     }
 
+    selectCollection(collectionName) {
+        this.persistCollection(collectionName);
+        this.props.bar.navigate('Main', {collection: collectionName});
+    }
+
+    persistCollection(collectionName) {
+        AsyncStorage.setItem(lastCollectionPersistKey, collectionName).catch(() => null);
+    }
 
 
     
@@ -38,14 +48,14 @@ export default class Collections extends Component {
         return (
             <View style = {{flex: 9}}>
                 <ScrollView>
-                { this.props.display.collections.map((localCollectionsList, index) => (
-                    <TouchableOpacity  key = {index} style={style=styles.navigationbox} onPress={() => this.props.bar.navigate('Main', {collection: localCollectionsList.collectionName})}>
+                { this.props.display.collections.map((collection, index) => (
+                    <TouchableOpacity  key = {index} style={style=styles.navigationbox} onPress={() => this.selectCollection(collection.collectionName)}>
                           {/* TODO: calling parent navigate bad, add function to remember collection chosen */}
-                          <Image source={{uri: localCollectionsList.collectionLogo}} style={styles.collectionlogo} />
+                          <Image source={{uri: collection.collectionLogo}} style={styles.collectionlogo} />
                           <View style={styles.collectioninfo}>
-                        <Text style={styles.collectionlabel}>{localCollectionsList.collectionLabel}</Text>
-                        <Text style={styles.libraryname}>{localCollectionsList.libraryName}</Text>
-                        <Text style={styles.libraryname}>{localCollectionsList.collectionRegion}, {localCollectionsList.collectionProvince}</Text>
+                        <Text style={styles.collectionlabel}>{collection.collectionLabel}</Text>
+                        <Text style={styles.libraryname}>{collection.libraryName}</Text>
+                        <Text style={styles.regionname}>{collection.collectionRegion}, {collection.collectionProvince}</Text>
                         </View>
                     </TouchableOpacity>
                     ))
@@ -55,7 +65,6 @@ export default class Collections extends Component {
         )
     }
 }
-//onPress={() => getKey(localCollectionsList.collectionlabel)}
 
 function mapStateToProps(state) {
     return {

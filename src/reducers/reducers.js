@@ -23,6 +23,11 @@ function playbackReducer(state = {playerState: {}, currentTrack: {}}, action) {
                 ...state,
                 playerState: action.state
             };
+        case 'PLAYBACK_SOMETHING':
+            return {
+                ...state,
+                playerState: action.state
+            };
         default:
             return state;
     }

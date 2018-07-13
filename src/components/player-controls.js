@@ -1,34 +1,51 @@
 import React, { Component } from 'react';
 import { TouchableOpacity, View } from 'react-native';
-import { play, pause, stop, next, previous, configPlayer } from '../track-player/player-commands';
+import { play, pause, stop, next, previous, configPlayer, reset } from '../track-player/player-commands';
 import CurrentTrack from './current-track';
 import ProgressBar from './progress-bar';
 import styles from '../styles/styles';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import TrackPlayer from 'react-native-track-player';
+import { connect } from 'react-redux';
 
 
 export default class PlayerControls extends Component {
+  constructor(props){
+    super(props);
 
+    this.togglePlayPause = this.togglePlayPause.bind(this);
+  }
+
+
+  async togglePlayPause() {
+     let state = await TrackPlayer.getState();
+     
+    if(state == TrackPlayer.STATE_PAUSED) {
+      TrackPlayer.play();
+    } else if (state == TrackPlayer.STATE_STOPPED){
+      TrackPlayer.play();
+    } else {
+      TrackPlayer.pause();
+    }
+  }
 
     render() {
+      const state = this.props.playback.state;
         return (
           <View style={styles.bottombar}>
           <View style={styles.break}></View>
           <View style={styles.playercontrols}>
-          <TouchableOpacity onPress={previous} >
-            <Icon name="step-backward" size={25} color="#6cc7e6" />
+            <TouchableOpacity onPress={previous} >
+              <Icon name="step-backward" size={25} color="#6cc7e6" />
             </TouchableOpacity>  
-            <TouchableOpacity onPress={stop}>
-            <Icon name="stop" size={25} color="#6cc7e6" />
-            </TouchableOpacity>   
-            <TouchableOpacity onPress={play}>
-            <Icon name="play" size={25} color="#6cc7e6"/>
+            <TouchableOpacity onPress={reset}>
+              <Icon name="trash" size={25} color="#6cc7e6"/>
             </TouchableOpacity>
-            <TouchableOpacity onPress={pause}>
-            <Icon name="pause" size={25} color="#6cc7e6" />
+            <TouchableOpacity onPress={this.togglePlayPause}> 
+            <Icon name={state == (TrackPlayer.STATE_PAUSED) ? "play" : "pause"} size={25} color="#6cc7e6" />
             </TouchableOpacity>
             <TouchableOpacity onPress={next}> 
-            <Icon name="step-forward" size={25} color="#6cc7e6" />
+              <Icon name="step-forward" size={25} color="#6cc7e6" />
             </TouchableOpacity>
           </View>
           <View style={styles.progressbarbox}>        
@@ -41,3 +58,9 @@ export default class PlayerControls extends Component {
           );
     }
 }
+function mapStateToProps(state) {
+  return {
+      playback: state.playback
+  };
+}
+module.exports = connect(mapStateToProps)(PlayerControls);

@@ -16,14 +16,13 @@ export default class Navigation extends Component {
         const { params } = navigation.state;
     }
     render() { 
-        const foo = this.props.navigation;
-       //  const myKey = this.props.navigation.state.params.myKey;      
+        const foo = this.props.navigation;   
         return (
             <View style={styles.mainscreen} >
                 <View style={styles.navigationheaderbox}>
                     <Text style={styles.navigationheader} >Select a MUSICat Partner Library</Text>
                 </View>
-                <Collections bar={foo} store={store} myKey={this.props.myKey}/>
+                <Collections bar={foo} store={store}/>
              </View>
     
         );

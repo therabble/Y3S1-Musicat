@@ -3,13 +3,19 @@ import { StyleSheet } from 'react-native';
 const styles = StyleSheet.create({
     addalbum:{
             position: 'absolute',
-            paddingLeft: 20,
+            paddingLeft: 70,
             paddingRight: 5,
-            paddingTop: 15,
+            paddingTop: 75,
             paddingBottom: 5,
     },
     addalbumopenclose:{
         flexDirection: 'row',
+    },
+    addalbumsongslist:{
+        fontWeight: 'bold',
+        alignSelf: 'flex-end',
+        paddingRight: 35,
+        paddingBottom: 15,
     },
     addbutton: {
         fontWeight: 'bold'
@@ -78,6 +84,9 @@ const styles = StyleSheet.create({
     currentbar: {
         backgroundColor: '#6cc7e6',
         height: 5
+    },
+    headerimage: {
+        //justifyContent: 'space-evenly',    
     },  
     libraryname:{
         fontSize: 12,
@@ -85,11 +94,11 @@ const styles = StyleSheet.create({
     },
     logo:{
         width: 100,
-        height: 40
+        height: 40,
     },
     logobox: {
         flex:1.4,
-        alignItems:'center'
+        alignItems:'center',
     },
     mainscreen:{
         flex: 1,
@@ -123,12 +132,20 @@ const styles = StyleSheet.create({
     progresstext: {
         fontSize: 8
     },
+    regionname: {
+        fontSize: 12,
+        alignItems:'center',
+        color: '#808080',
+    },
     toplogobar: {
         alignItems:'center'
     },
     trackaddbox: {
-        flex: 2, 
-        padding:10
+        flexDirection: 'row',
+        justifyContent: 'space-evenly',
+        flex: 5, 
+        paddingRight:10,
+        paddingLeft: 8,
     },
     trackbox: {
         flex: 10, 

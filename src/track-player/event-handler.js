@@ -27,7 +27,6 @@ const eventHandler = async (store, data) => {
         // Again, we can forward this command to the player using  
         previous();
     }
-
 };
 
 module.exports = function(store) {
