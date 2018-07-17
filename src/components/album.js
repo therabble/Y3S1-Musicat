@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View, TouchableOpacity,Image, ScrollView } from 'react-native';
+import { Text, View, TouchableOpacity,Image } from 'react-native';
 import Song from './song';
 import styles from '../styles/styles';
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -20,13 +20,14 @@ export default class Album extends Component{
   }
   
   showSongs() {
+    //returns a list of all songs on an album if caret is toggled
     if (!this.state.showSongs){
       return
     }
     let list = 
       <View>
         {this.props.album.tracks.map((song, index) => {return (
-         <Song artist={this.props.album.main_artist_name} album_title={this.props.album.title} album_art={this.props.album.front_cover_art} song={song} key = {index} />
+         <Song artist={this.props.album.main_artist_name} album_title={this.props.album.title} album_art={this.props.album.front_cover_art} song={song} key = {index} store={this.props.store} />
          )})}
       </View>;
       return list
@@ -39,15 +40,16 @@ export default class Album extends Component{
   showOpenCloseIcon() {
     if(this.state.showSongs)
     {
-      return <Icon name="caret-down" size={30} color="#6cc7e6" />
+      return <Icon name="caret-down" size={25} color='#808080' />
     }
     else
     {
-      return <Icon name="caret-right" size={30} color="#6cc7e6" />
+      return <Icon name="caret-right" size={25} color='#808080' />
     }
   }
 
   addAlbumToPlaylist() {
+    //resets the queue, adds each track from the album and then plays the entire playlist
     reset();
     {this.props.album.tracks.map((song, index) => {
       const track = {
@@ -61,6 +63,7 @@ export default class Album extends Component{
   }
 
   showAddAlbum() {
+    //shows the add album button when you toggle showsongs
     if(this.state.showSongs)
     {
       return  <View>
@@ -78,28 +81,28 @@ export default class Album extends Component{
 
     return (
       <View>      
-          <View style={styles.albumheader}>
-            <View>
-              <TouchableOpacity onPress={this.addAlbumToPlaylist}>
-                <Image source={{uri: albumArt}} style={styles.albumpicture} />
-                <View style = {styles.addalbum} >
+        <View style={styles.albumheader}>
+          <View>
+            <TouchableOpacity onPress={this.addAlbumToPlaylist}>
+              <Image source={{uri: albumArt}} style={styles.albumpicture} />
+              <View style = {styles.addalbum} >
                 <Icon style = {{position: 'absolute'}} name="circle" size={30} color="#FFFFFF"/>          
-                  <Icon style = {{position: 'absolute'}} name="play-circle" size={30} color="#6cc7e6"/>
-                </View>
-              </TouchableOpacity>     
-            </View>
-            <TouchableOpacity onPress = {this.toggleShowSongs}>
-            <View style={styles.albuminfo}>
-              <View >
-                <Text style={styles.albumtitle}>{this.props.album.title}</Text>
+                <Icon style = {{position: 'absolute'}} name="play-circle" size={30} color="#6cc7e6"/>
               </View>
-              <View >           
-                <Text style={styles.artistname}>{this.props.album.main_artist_name}</Text> 
-                {this.showOpenCloseIcon()}
-              </View>
-            </View >
-            </TouchableOpacity>
+            </TouchableOpacity>     
           </View>
+          <TouchableOpacity onPress = {this.toggleShowSongs}>
+          <View style={styles.albuminfo}>
+            <View>
+              <Text style={styles.albumtitle}>{this.props.album.title}</Text>
+            </View>
+            <View>           
+              <Text style={styles.artistname}>{this.props.album.main_artist_name}</Text> 
+              {this.showOpenCloseIcon()}
+            </View>
+          </View >
+          </TouchableOpacity>
+        </View>
         {this.showAddAlbum()}
         {this.showSongs()}
       </View>

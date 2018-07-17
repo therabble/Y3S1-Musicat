@@ -1,5 +1,6 @@
 import TrackPlayer from 'react-native-track-player';
 
+//sets up player before doing commands to make sure commands are never pressed before the player is set up
 const play = () => {
     TrackPlayer.setupPlayer({}).then(() => {
         TrackPlayer.play();
@@ -35,6 +36,11 @@ const previous = () => {
         TrackPlayer.skipToPrevious();
     });
 }
+const destroy = () => {
+    TrackPlayer.setupPlayer({}).then(() => {
+        TrackPlayer.destroy();
+    });
+}
 const reset = () => {
     TrackPlayer.setupPlayer({}).then(() => {
         TrackPlayer.reset();
@@ -50,7 +56,8 @@ const configPlayer = async () => {
               TrackPlayer.CAPABILITY_STOP,
               TrackPlayer.CAPABILITY_SKIP_TO_NEXT,
               TrackPlayer.CAPABILITY_SKIP_TO_PREVIOUS,
-              TrackPlayer.CAPABILITY_RESET
+              TrackPlayer.CAPABILITY_RESET,
+              TrackPlayer.CAPABILITY_DESTROY
           ]
         });
     });
@@ -64,5 +71,6 @@ module.exports = {
     next,
     previous,
     configPlayer,
-    reset
+    reset,
+    destroy
 };

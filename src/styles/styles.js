@@ -2,23 +2,17 @@ import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
     addalbum:{
-            position: 'absolute',
-            paddingLeft: 70,
-            paddingRight: 5,
-            paddingTop: 75,
-            paddingBottom: 5,
-    },
-    addalbumopenclose:{
-        flexDirection: 'row',
+        position: 'absolute',
+        paddingLeft: 70,
+        paddingRight: 5,
+        paddingTop: 75,
+        paddingBottom: 5,
     },
     addalbumsongslist:{
         fontWeight: 'bold',
         alignSelf: 'flex-end',
-        paddingRight: 35,
+        paddingRight: 5,
         paddingBottom: 15,
-    },
-    addbutton: {
-        fontWeight: 'bold'
     },
     albumheader:{
         flexDirection: 'row',
@@ -29,10 +23,12 @@ const styles = StyleSheet.create({
         paddingLeft: 30,
         width: 180,
     },
-    albumlist: {
-        flex: 10,
+    albumsscroll:{
+        paddingLeft: 20,
+        paddingRight: 20,
+        flex: 9,
     },
-    albumpicture: {
+    albumpicture:{
         width: 100,
         height: 100, 
         borderRadius: 50,
@@ -45,11 +41,7 @@ const styles = StyleSheet.create({
     artistname:{
         fontSize: 13,
     },
-    background: {
-        backgroundColor: '#ffffff',
-        flex: 1,
-    },
-    bar: {
+    bar:{
         backgroundColor: '#575757',
         height: 5,
         width: '100%',
@@ -57,10 +49,14 @@ const styles = StyleSheet.create({
         alignItems: 'flex-start',
     },
     bottombar:{
-        flex: 2,       
+        flex: 2.5,
+        paddingLeft: 15,
+        paddingRight: 15,
+        borderTopWidth: .5,
+        borderColor: '#D3D3D3',       
     },
-    break: {
-        height: 8,
+    break:{
+        height: 6,
     },
     collectioninfo:{
         paddingLeft: 30,
@@ -78,35 +74,43 @@ const styles = StyleSheet.create({
         height: 100,
         borderRadius: 50,
         borderWidth: 1,
-        borderColor: '#CACACA'
-        
+        borderColor: '#CACACA'   
     },
-    currentbar: {
+    collectionscroll:{
+        flex: 9,
+        paddingLeft: 10,
+        paddingRight: 10,
+    },
+    currentbar:{
         backgroundColor: '#6cc7e6',
         height: 5
     },
-    headerimage: {
-        //justifyContent: 'space-evenly',    
-    },  
+    headerimage:{
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        overflow: 'hidden',
+    },
+    libraryheaderlogo:{
+        width: 140,
+        height: 45,
+    },
     libraryname:{
         fontSize: 12,
         alignItems:'center'
     },
-    logo:{
+    mainscreen:{
+        flex: 1,
+        backgroundColor: '#ffffff'
+    },
+    musicatcollectionsheaderlogo:{
         width: 100,
         height: 40,
     },
-    logobox: {
-        flex:1.4,
-        alignItems:'center',
+    musicatmainheaderlogo:{
+        width: 40,
+        height: 40,
     },
-    mainscreen:{
-        flex: 1,
-        paddingLeft: 20,
-        paddingRight: 20,
-        backgroundColor: '#ffffff'
-    },
-    navigationbox: {
+    navigationbox:{
         flexDirection: 'row',
         paddingBottom: 15,
         paddingTop: 15,
@@ -116,7 +120,7 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         alignItems:'center'
     },
-    navigationheaderbox: {
+    navigationheaderbox:{
         alignItems: 'center',
         padding: 15,
         borderBottomWidth: 1,
@@ -126,35 +130,38 @@ const styles = StyleSheet.create({
         justifyContent: 'space-evenly',
         padding: 10
     }, 
-    progressbarbox: {
+    progressbarbox:{
         height: 20,
     },
-    progresstext: {
-        fontSize: 8
+    progresstext:{
+        fontSize: 11
     },
-    regionname: {
+    progressresetplaylist:{
+        flexDirection: 'row',
+        justifyContent: 'space-between'
+    },
+    regionname:{
         fontSize: 12,
         alignItems:'center',
         color: '#808080',
     },
-    toplogobar: {
-        alignItems:'center'
-    },
-    trackaddbox: {
+    songadd:{
         flexDirection: 'row',
-        justifyContent: 'space-evenly',
-        flex: 5, 
-        paddingRight:10,
-        paddingLeft: 8,
+        justifyContent: 'space-between',
     },
-    trackbox: {
+    trackaddbox:{
+        flex: 1, 
+        paddingTop: 10,
+    },
+    trackbox:{
         flex: 10, 
-        padding:10
+        paddingTop: 10,
+        paddingBottom: 10,
+        flexDirection: 'row',
     },
-    trackstyle: {
+    trackstyle:{
         fontSize: 13
     },
 });
     
-
 export default styles;

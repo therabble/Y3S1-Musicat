@@ -5,6 +5,7 @@ import TrackPlayer from 'react-native-track-player';
 import { configPlayer } from '../track-player/player-commands';
 
 class CurrentTrack extends Component {
+    //retrieves the current track and displays it above the progress bar
     constructor(props){
         super(props);
 

@@ -3,54 +3,58 @@ import { View, Text, TouchableOpacity } from 'react-native';
 import { add } from '../track-player/player-commands';
 import styles from '../styles/styles';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import { reset, play } from '../track-player/player-commands';
+import { play } from '../track-player/player-commands';
+import { connect } from 'react-redux';
+import TrackPlayer from 'react-native-track-player';
 
 export default class Song extends Component{
+  state = {
+    myQueue: ''
+ }
   constructor(props) {
     super(props);
-
-    this.addToPlaylist = this.addToPlaylist.bind(this);
     this.playSong = this.playSong.bind(this);
+
   }
 
-  addToPlaylist() {
+  async playSong() {
+    //gets queue length and track information, adds the track to the queue and plays the track if the queue's length is 0
+    let queue = await TrackPlayer.getQueue();
     const track = {
       id: this.props.song.access_token,
       url: 'https://mms.yaharamusic.org/tc?src=' + this.props.song.url + '&fmt=mp3&auth=foo',
       title: this.props.song.title,
       artist: this.props.artist
     };
-    add(track);
-    
-  }
-  playSong() {
-    reset();
-    const track = {
-      id: this.props.song.access_token,
-      url: 'https://mms.yaharamusic.org/tc?src=' + this.props.song.url + '&fmt=mp3&auth=foo',
-      title: this.props.song.title,
-      artist: this.props.artist
-    };
-    add(track);
-    play();   
-    
+    add(track)
+
+    if (queue.length) {
+    } else{
+      play();
+    }
   }
 
   render(){
-    return(
-      <View style={{flexDirection: 'row'}}>
+    //icon checks if the player state is null (as opposed to playing, paused, etc.)
+    const state = this.props.playback.state;
+    return(     
+      <View style={styles.songadd}>
         <View style={styles.trackbox}>
           <Text style={styles.trackstyle}>{this.props.song.position}. {this.props.song.title}{'\n'}</Text>
         </View>
         <View style={styles.trackaddbox}>
-          <TouchableOpacity onPress={this.addToPlaylist}>
-            <Icon name="plus" size={20} color="#6cc7e6" />
-          </TouchableOpacity>
-          <TouchableOpacity onPress={this.playSong}>
-            <Icon name="play" size={20} color="#6cc7e6" />
-          </TouchableOpacity>
+        <TouchableOpacity onPress={this.playSong}> 
+            <Icon name={(state != (null)) ? "plus" : "play"} size={20} color="#6cc7e6" />
+            </TouchableOpacity>
         </View>
       </View>
     )
   }
 }
+
+function mapStateToProps(state) {
+  return {
+      playback: state.playback
+  };
+}
+module.exports = connect(mapStateToProps)(Song);

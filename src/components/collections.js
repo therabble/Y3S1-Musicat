@@ -2,10 +2,9 @@ import React, { Component } from 'react';
 import styles from '../styles/styles';
 import axios from 'axios';
 import { ScrollView, View, TouchableOpacity, Text, Image, AsyncStorage } from 'react-native';
-
 import { connect } from 'react-redux';
 import { lastCollectionPersistKey } from '../data/persist';
-//import NavigationService from './navigation-service';
+import { lastLogoPersistKey } from '../data/persist';
 
 export default class Collections extends Component {
     constructor(props) {
@@ -20,6 +19,7 @@ export default class Collections extends Component {
     }
 
     loadCollections() {
+        //loads collection info from the api and saves to store
         const collectionsUrl = 'http://127.0.0.1:5005/collections/?collection=co.musicat.savannah&auth=foo'//development
 //        const collectionsUrl = 'https://api.musicat.co/public/albums/?collection=ca.epl.capitalcityrecords' //production
         axios
@@ -33,7 +33,9 @@ export default class Collections extends Component {
         });
     }
 
-    selectCollection(collectionName) {
+    selectCollection(collectionName, collectionLogo) {
+        //saves collection and logo information to local storage
+        this.persistLogo(collectionLogo);
         this.persistCollection(collectionName);
         this.props.bar.navigate('Main', {collection: collectionName});
     }
@@ -41,16 +43,19 @@ export default class Collections extends Component {
     persistCollection(collectionName) {
         AsyncStorage.setItem(lastCollectionPersistKey, collectionName).catch(() => null);
     }
+    persistLogo(collectionLogo) {
+        AsyncStorage.setItem(lastLogoPersistKey, collectionLogo).catch(() => null);
+    }
 
 
     
     render() {
         return (
-            <View style = {{flex: 9}}>
+            //maps items into a scrollview, may be faster if replaced with a flatlist
+            <View style = {styles.collectionscroll}>
                 <ScrollView>
                 { this.props.display.collections.map((collection, index) => (
-                    <TouchableOpacity  key = {index} style={style=styles.navigationbox} onPress={() => this.selectCollection(collection.collectionName)}>
-                          {/* TODO: calling parent navigate bad, add function to remember collection chosen */}
+                    <TouchableOpacity  key = {index} style={style=styles.navigationbox} onPress={() => this.selectCollection(collection.collectionName, collection.collectionLogo)}>
                           <Image source={{uri: collection.collectionLogo}} style={styles.collectionlogo} />
                           <View style={styles.collectioninfo}>
                         <Text style={styles.collectionlabel}>{collection.collectionLabel}</Text>

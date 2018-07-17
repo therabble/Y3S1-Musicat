@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { TouchableOpacity, View } from 'react-native';
-import { play, pause, stop, next, previous, configPlayer, reset } from '../track-player/player-commands';
+import { next, previous } from '../track-player/player-commands';
 import CurrentTrack from './current-track';
 import ProgressBar from './progress-bar';
 import styles from '../styles/styles';
@@ -29,34 +29,32 @@ export default class PlayerControls extends Component {
     }
   }
 
-    render() {
-      const state = this.props.playback.state;
-        return (
-          <View style={styles.bottombar}>
-          <View style={styles.break}></View>
-          <View style={styles.playercontrols}>
-            <TouchableOpacity onPress={previous} >
-              <Icon name="step-backward" size={25} color="#6cc7e6" />
-            </TouchableOpacity>  
-            <TouchableOpacity onPress={reset}>
-              <Icon name="trash" size={25} color="#6cc7e6"/>
-            </TouchableOpacity>
-            <TouchableOpacity onPress={this.togglePlayPause}> 
+  render() {
+    const state = this.props.playback.state;
+    return (
+      <View style={styles.bottombar}>
+        <View style={styles.break}>
+        </View>
+        <View style={styles.playercontrols}>
+          <TouchableOpacity onPress={previous} >
+            <Icon name="step-backward" size={25} color="#6cc7e6" />
+          </TouchableOpacity>  
+          <TouchableOpacity onPress={this.togglePlayPause}> 
             <Icon name={state == (TrackPlayer.STATE_PAUSED) ? "play" : "pause"} size={25} color="#6cc7e6" />
-            </TouchableOpacity>
-            <TouchableOpacity onPress={next}> 
-              <Icon name="step-forward" size={25} color="#6cc7e6" />
-            </TouchableOpacity>
-          </View>
-          <View style={styles.progressbarbox}>        
+          </TouchableOpacity>
+          <TouchableOpacity onPress={next}> 
+            <Icon name="step-forward" size={25} color="#6cc7e6" />
+          </TouchableOpacity>
+        </View>
+        <View style={styles.progressbarbox}>        
           <CurrentTrack store={this.props.store} />
-          </View>
-          <View style={styles.progressbarbox}>  
-            <ProgressBar store={this.props.store}/>
-          </View>
+        </View>
+        <View style={styles.progressbarbox}>  
+          <ProgressBar store={this.props.store}/>
+        </View>
       </View>
-          );
-    }
+    );
+  }
 }
 function mapStateToProps(state) {
   return {

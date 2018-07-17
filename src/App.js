@@ -5,8 +5,8 @@ export default class App extends Component {
 
   render() {
     return ( 
-      <Nav />
-      
+      //Goes to Nav in navigation.js
+      <Nav />      
     );
   }
 }

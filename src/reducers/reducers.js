@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-
+//redux reducers
 
 function playbackReducer(state = {playerState: {}, currentTrack: {}}, action) {
     switch(action.type) {

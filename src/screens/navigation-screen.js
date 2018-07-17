@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, Image, AsyncStorage } from 'react-native';
 import styles from '../styles/styles'
 import Collections from '../components/collections'
 import { createStore } from 'redux';
@@ -12,9 +12,19 @@ TrackPlayer.registerEventHandler(createEventHandler(store));
 
 
 export default class Navigation extends Component {
-    static navigationOptions = ({ navigation, navigationOptions }) => {
-        const { params } = navigation.state;
-    }
+    //header styling options
+    static navigationOptions = {
+        headerTitle: <Text style={styles.headerimage}><Image source={require('../images/musicat.png')} style={styles.musicatcollectionsheaderlogo}></Image></Text>,
+        headerStyle: {
+          backgroundColor: '#ffffff',
+          padding: 1,
+        },
+        headerTintColor: '#6cc7e6',
+        headerTitleStyle: {
+          fontWeight: 'bold',
+        },
+      };
+
     render() { 
         const foo = this.props.navigation;   
         return (

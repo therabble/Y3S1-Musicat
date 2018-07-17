@@ -2,38 +2,19 @@ import React, { Component } from 'react';
 import { createStackNavigator } from 'react-navigation';
 import Navigation from '../screens/navigation-screen';
 import Main from '../screens/main-screen';
-import {Image, AsyncStorage, View, Text} from 'react-native';
-import styles from '../styles/styles';
+import { AsyncStorage } from 'react-native';
 import NavigationService from './navigation-service';
 import { lastCollectionPersistKey } from '../data/persist';
 
+//Creates the react-navigation navigator with two screens: Navigation which is the collections page and Main which is the music player
 const Navigator = createStackNavigator(
 
       {
-        Main: {
-          screen: Main,
-          navigationOptions: {
-            headerTitle: <Text style={styles.headerimage}><Image source={require('../images/musicat.png')} style={styles.logo}></Image>     <Image source={require('../images/musicat.png')} style={styles.logo}></Image></Text>,
-          }
-        },
-        Navigation: {
-          screen: Navigation,
-          navigationOptions: {
-            headerTitle: <Image source={require('../images/musicat.png')} style={styles.logo}></Image>,
-          }
-        },
+        Main: Main,
+        Navigation: Navigation,
       },
       {
         initialRouteName: 'Navigation',
-        navigationOptions: {
-          headerStyle: {
-            backgroundColor: '#ffffff',
-          },
-          headerTintColor: '#6cc7e6',
-          headerTitleStyle: {
-            fontWeight: 'bold',
-          },
-        },
       }
     );  
 
@@ -43,14 +24,15 @@ export default class Nav extends Component {
     this.loadLastCollection();
   }
 
+  //Loads the collection name from local storage to let the app know which library to travel to
   loadLastCollection() {
     AsyncStorage.getItem(lastCollectionPersistKey).then((collectionName) => {
       if (collectionName) {
         NavigationService.navigate('Main', {collection: collectionName});
+
       }
     }).catch(() => null);
   }
-
   render() {
     return (
       <Navigator
