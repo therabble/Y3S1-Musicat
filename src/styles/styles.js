@@ -91,6 +91,7 @@ const styles = StyleSheet.create({
         overflow: 'hidden',
     },
     libraryheaderlogo:{
+        resizeMode: 'contain',
         width: 140,
         height: 45,
     },
@@ -103,6 +104,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#ffffff'
     },
     musicatcollectionsheaderlogo:{
+        resizeMode: 'contain',
         width: 100,
         height: 40,
     },

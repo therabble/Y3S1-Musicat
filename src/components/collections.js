@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import styles from '../styles/styles';
 import axios from 'axios';
-import { ScrollView, View, TouchableOpacity, Text, Image, AsyncStorage } from 'react-native';
+import { ScrollView, View, TouchableOpacity, Text, Image, AsyncStorage, FlatList } from 'react-native';
 import { connect } from 'react-redux';
 import { lastCollectionPersistKey } from '../data/persist';
 import { lastLogoPersistKey } from '../data/persist';
@@ -51,9 +51,22 @@ export default class Collections extends Component {
     
     render() {
         return (
-            //maps items into a scrollview, may be faster if replaced with a flatlist
+            //maps items into a flatlist, faster than scrollview
             <View style = {styles.collectionscroll}>
-                <ScrollView>
+            <FlatList data={this.props.display.collections}
+                keyExtractor={(x, index) =>  index}
+                renderItem={({ item, index }) => 
+                <TouchableOpacity key = {index} style={style=styles.navigationbox} onPress={() => this.selectCollection(item.collectionName, item.collectionLogo)}>
+                    <Image source={{uri: item.collectionLogo}} style={styles.collectionlogo} />
+                    <View style={styles.collectioninfo}>
+                        <Text style={styles.collectionlabel}>{item.collectionLabel}</Text>
+                        <Text style={styles.libraryname}>{item.libraryName}</Text>
+                        <Text style={styles.regionname}>{item.collectionRegion}, {item.collectionProvince}</Text>
+                    </View>
+                </TouchableOpacity>
+                }
+            /> 
+                {/* <ScrollView>
                 { this.props.display.collections.map((collection, index) => (
                     <TouchableOpacity  key = {index} style={style=styles.navigationbox} onPress={() => this.selectCollection(collection.collectionName, collection.collectionLogo)}>
                           <Image source={{uri: collection.collectionLogo}} style={styles.collectionlogo} />
@@ -65,7 +78,7 @@ export default class Collections extends Component {
                     </TouchableOpacity>
                     ))
                 }
-            </ScrollView>
+            </ScrollView> */}
             </View>
         )
     }

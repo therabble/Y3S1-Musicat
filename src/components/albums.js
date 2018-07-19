@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import Album from './album';
-import { ScrollView, View } from 'react-native';
+import { ScrollView, View, FlatList } from 'react-native';
 import { connect } from 'react-redux';
 import styles from '../styles/styles';
 
@@ -34,15 +34,21 @@ class Albums extends Component {
     
     render() {
         return (
-            //maps albums into a scrollview, may be faster if you use a flatlist instead
+            //maps albums into a flatlist, faster than scrollview
             <View style = {styles.albumsscroll}>
-                <ScrollView> 
+            <FlatList data={this.props.display.albums}
+                keyExtractor={(x, index) =>  index}
+                renderItem={({ item, index }) => 
+                <Album key = {index} album = {item.album} trackNum = {index + 1} store={this.props.store}/>
+                }
+            /> 
+                {/* <ScrollView> 
                 {this.props.display.albums.map((localAlbumList, index) => {
                     return (
                         <Album key = {index} album = {localAlbumList.album} trackNum = {index + 1} store={this.props.store}/>
                     ); 
                 })}
-            </ScrollView>
+                </ScrollView> */}
             </View>)
     }
 }

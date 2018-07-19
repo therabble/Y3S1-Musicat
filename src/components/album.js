@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View, TouchableOpacity,Image } from 'react-native';
+import { Text, View, TouchableOpacity,Image, FlatList } from 'react-native';
 import Song from './song';
 import styles from '../styles/styles';
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -26,9 +26,15 @@ export default class Album extends Component{
     }
     let list = 
       <View>
-        {this.props.album.tracks.map((song, index) => {return (
+        <FlatList data={this.props.album.tracks}
+          keyExtractor={(x, index) =>  index}
+          renderItem={({ item, index }) => 
+          <Song artist={this.props.album.main_artist_name} album_title={this.props.album.title} album_art={this.props.album.front_cover_art} song={item} key = {index} store={this.props.store} />
+          }
+        /> 
+        {/* {this.props.album.tracks.map((song, index) => {return (
          <Song artist={this.props.album.main_artist_name} album_title={this.props.album.title} album_art={this.props.album.front_cover_art} song={song} key = {index} store={this.props.store} />
-         )})}
+         )})} */}
       </View>;
       return list
   }
