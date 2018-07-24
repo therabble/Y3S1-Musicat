@@ -8,7 +8,7 @@ import { connect } from 'react-redux';
 import TrackPlayer from 'react-native-track-player';
 
 export default class Song extends Component{
-
+//displays individual songs for each album 
   constructor(props) {
     super(props);
     this.playSong = this.playSong.bind(this);

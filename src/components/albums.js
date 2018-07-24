@@ -7,13 +7,12 @@ import styles from '../styles/styles';
 
 
 class Albums extends Component {
-
+///loads albums from the api and sorts tracks saves them to store
     componentDidMount() {
         this.loadAlbums();
     }
 
     loadAlbums() {
-        //loads albums from the api and sorts tracks saves them to store
         const collectionUrl = 'http://127.0.0.1:5005/public/albums/?collection=' + this.props.collection //development
 //        const collectionUrl = 'https://api.musicat.co/public/albums/?collection=' + this.props.collection //production
         axios

@@ -6,6 +6,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import { add, reset, play } from '../track-player/player-commands';
 
 export default class Album extends Component{
+  //prints out each individual albums with cover art, artist name, album name, and a toggle button that shows the songs as well as a play whole album button
   constructor(props) {
     super(props);
 

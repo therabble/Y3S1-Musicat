@@ -10,6 +10,7 @@ import { connect } from 'react-redux';
 
 
 export default class PlayerControls extends Component {
+//shows next, previous, and toggle play/pause button and displays progress bar
   constructor(props){
     super(props);
 

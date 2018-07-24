@@ -7,6 +7,7 @@ import { lastCollectionPersistKey } from '../data/persist';
 import { lastLogoPersistKey } from '../data/persist';
 
 export default class Collections extends Component {
+//loads collection info from the api, saves to store, and prints songs underneath each individual album
     constructor(props) {
         super(props);
     

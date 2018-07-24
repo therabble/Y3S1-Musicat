@@ -7,6 +7,7 @@ import { reset } from '../track-player/player-commands';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 class ProgressBar extends Component {
+//does math to convert song progress to correct hours, minutes, and seconds, changes the width of the current bar based on progress of song 
     constructor(props){
         super(props);
         
