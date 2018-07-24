@@ -6,6 +6,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import { play } from '../track-player/player-commands';
 import { connect } from 'react-redux';
 import TrackPlayer from 'react-native-track-player';
+import { STATE_STOPPED } from '../../node_modules/react-native-track-player/lib';
 
 export default class Song extends Component{
 //displays individual songs for each album 
@@ -42,7 +43,7 @@ export default class Song extends Component{
         </View>
         <View style={styles.trackaddbox}>
         <TouchableOpacity onPress={this.playSong}> 
-            <Icon name={(state != (null)) ? "plus" : "play"} size={20} color="#6cc7e6" />
+            <Icon name={(state != (null))&&(state != (STATE_STOPPED)) ? "plus" : "play"} size={20} color="#6cc7e6" />
             </TouchableOpacity>
         </View>
       </View>
