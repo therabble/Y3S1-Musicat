@@ -20,3 +20,6 @@ for mac/android:
 - open android file in android studio
 - press play and either connect a device or create a new virtual device, click ok on available virtual device of your choice
 your app should run??
+
+
+https://facebook.github.io/react-native/docs/running-on-device
