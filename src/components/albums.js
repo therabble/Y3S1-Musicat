@@ -36,18 +36,11 @@ class Albums extends Component {
             //maps albums into a flatlist, faster than scrollview
             <View style = {styles.albumsscroll}>
             <FlatList data={this.props.display.albums}
-                keyExtractor={(x, index) =>  index}
                 renderItem={({ item, index }) => 
                 <Album key = {index} album = {item.album} trackNum = {index + 1} store={this.props.store}/>
                 }
+                keyExtractor={(item, index) =>  index} 
             /> 
-                {/* <ScrollView> 
-                {this.props.display.albums.map((localAlbumList, index) => {
-                    return (
-                        <Album key = {index} album = {localAlbumList.album} trackNum = {index + 1} store={this.props.store}/>
-                    ); 
-                })}
-                </ScrollView> */}
             </View>)
     }
 }

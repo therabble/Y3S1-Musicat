@@ -28,14 +28,11 @@ export default class Album extends Component{
     let list = 
       <View>
         <FlatList data={this.props.album.tracks}
-          keyExtractor={(x, index) =>  index}
           renderItem={({ item, index }) => 
           <Song artist={this.props.album.main_artist_name} album_title={this.props.album.title} album_art={this.props.album.front_cover_art} song={item} key = {index} store={this.props.store} />
           }
-        /> 
-        {/* {this.props.album.tracks.map((song, index) => {return (
-         <Song artist={this.props.album.main_artist_name} album_title={this.props.album.title} album_art={this.props.album.front_cover_art} song={song} key = {index} store={this.props.store} />
-         )})} */}
+          keyExtractor={(item, index) =>  index} 
+        />
       </View>;
       return list
   }

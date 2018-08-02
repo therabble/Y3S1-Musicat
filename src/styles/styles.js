@@ -89,6 +89,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
         overflow: 'hidden',
+        alignItems: 'center'
     },
     libraryheaderlogo:{
         resizeMode: 'contain',
@@ -107,6 +108,7 @@ const styles = StyleSheet.create({
         resizeMode: 'contain',
         width: 100,
         height: 40,
+        alignItems: 'center',
     },
     musicatmainheaderlogo:{
         width: 40,

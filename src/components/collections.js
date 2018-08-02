@@ -55,7 +55,6 @@ export default class Collections extends Component {
             //maps items into a flatlist, faster than scrollview
             <View style = {styles.collectionscroll}>
             <FlatList data={this.props.display.collections}
-                keyExtractor={(x, index) =>  index}
                 renderItem={({ item, index }) => 
                 <TouchableOpacity key = {index} style={style=styles.navigationbox} onPress={() => this.selectCollection(item.collectionName, item.collectionLogo)}>
                     <Image source={{uri: item.collectionLogo}} style={styles.collectionlogo} />
@@ -66,20 +65,8 @@ export default class Collections extends Component {
                     </View>
                 </TouchableOpacity>
                 }
+                keyExtractor={(item, index) => index}
             /> 
-                {/* <ScrollView>
-                { this.props.display.collections.map((collection, index) => (
-                    <TouchableOpacity  key = {index} style={style=styles.navigationbox} onPress={() => this.selectCollection(collection.collectionName, collection.collectionLogo)}>
-                          <Image source={{uri: collection.collectionLogo}} style={styles.collectionlogo} />
-                          <View style={styles.collectioninfo}>
-                        <Text style={styles.collectionlabel}>{collection.collectionLabel}</Text>
-                        <Text style={styles.libraryname}>{collection.libraryName}</Text>
-                        <Text style={styles.regionname}>{collection.collectionRegion}, {collection.collectionProvince}</Text>
-                        </View>
-                    </TouchableOpacity>
-                    ))
-                }
-            </ScrollView> */}
             </View>
         )
     }
